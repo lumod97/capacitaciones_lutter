@@ -52,7 +52,7 @@ class CapacitacionAsistentesDao {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getCapacitacionAsistentes() async {
+  Future<List<Map<String, dynamic>>> getCapacitacionAsistentes(id_capacitacion) async {
     final Database database = await initDatabase();
 
     final List<Map<String, dynamic>> maps = await database.rawQuery('''
@@ -69,6 +69,8 @@ class CapacitacionAsistentesDao {
     FROM capacitacion_asistentes
     LEFT JOIN capacitacion ON capacitacion_asistentes.idcapacitacion = capacitacion.id
     LEFT JOIN personas ON capacitacion_asistentes.idpersona = personas.dni
+    LEFT JOIN areas ON areas.id = personas.idarea
+    WHERE capacitacion.id = '$id_capacitacion'
   ''');
 
     // Convertir cada mapa a formato JSON

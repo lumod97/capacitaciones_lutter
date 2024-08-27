@@ -154,11 +154,11 @@ void inicializarDaos() async {
   // final capacitacionAsistentesDao = CapacitacionAsistentesDao();
 
   try {
-    // insertAreas(database);
-    // insertPersonas();
-    // insertCargos(database);
-    // insertTiposCapacitacion(database);
-    // insertCapacitaciones(database);
+    insertAreas(database);
+    insertPersonas();
+    insertCargos(database);
+    insertTiposCapacitacion(database);
+    insertCapacitaciones(database);
 
 
     // Insertar capacitadores
@@ -173,9 +173,6 @@ void inicializarDaos() async {
     //   idpersona: '72450801',
     // ));
 
-    final List<CapacitadoresModel> capacitadores = await capacitadoresDao.getCapacitadores();
-
-    print(capacitadores.first.idpersona);
 
     // Insertar capacitaciones
     // await capacitacionDao.insertCapacitacion(CapacitacionModel(

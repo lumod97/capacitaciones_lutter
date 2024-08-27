@@ -23,6 +23,18 @@ class CapacitacionDao {
     });
   }
 
+  Future<List<CapacitacionModel>> getCapacitacionById(id) async {
+    final Database database = await initDatabase();
+
+    final List<Map<String, dynamic>> maps =
+        await database.query('capacitacion',
+        where: 'id = ?',
+        whereArgs: [id]);
+    return List.generate(maps.length, (i) {
+      return CapacitacionModel.fromMap(maps[i]);
+    });
+  }
+
   Future<List<Map<String, dynamic>>> getCapacitacionesByStatus(
       bool status) async {
     final Database database = await initDatabase();
